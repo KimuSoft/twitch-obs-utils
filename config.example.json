@@ -1,0 +1,14 @@
+{
+  "obs": {
+    "address": "localhost:4444",
+    "password": "example"
+  },
+  "twitch": "",
+  "setTextCommands": {
+    "!타이틀 ": "Test"
+  },
+  "twitchAuth": {
+    "username": "",
+    "token": ""
+  }
+}
