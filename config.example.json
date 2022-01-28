@@ -10,5 +10,11 @@
   "twitchAuth": {
     "username": "",
     "token": ""
+  },
+  "pointTimers": {
+    "278ab794-7e6e-4625-bf1a-c219363e842c": {
+      "title": "테스트1",
+      "minutes": 1
+    }
   }
 }
