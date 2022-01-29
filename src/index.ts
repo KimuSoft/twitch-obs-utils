@@ -78,6 +78,14 @@ twitch.on(
         if (!item) return
         item.time += 1000 * 60
         await twitch.say(channel, `${name} +1분`)
+      } else if (command === "시간제거") {
+        const name = args.join(" ")
+        const item = data.pointTimers.find(
+          (x) => config.pointTimers[x.id].title === name
+        )
+        if (!item) return
+        item.time -= 1000 * 60
+        await twitch.say(channel, `${name} +1분`)
       }
       return
     }
