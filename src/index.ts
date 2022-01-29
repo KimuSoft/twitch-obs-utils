@@ -31,12 +31,7 @@ const twitch = new tmi.Client({
 
 twitch.on(
   "redeem",
-  async (
-    channel: string,
-    username: string,
-    rewardType: "highlighted-message" | "skip-subs-mode-message" | string,
-    tags: ChatUserstate
-  ) => {
+  async (channel: string, username: string, rewardType: string) => {
     console.log(rewardType)
     const item = config.pointTimers[rewardType]
     if (!item) return
@@ -57,12 +52,12 @@ twitch.on(
   "message",
   async (
     channel: string,
-    userstate: ChatUserstate,
+    userState: ChatUserstate,
     message: string,
     self: boolean
   ) => {
     if (self) return
-    if (!userstate.mod && !userstate.badges?.broadcaster) return
+    if (!userState.mod && !userState.badges?.broadcaster) return
     let k = Object.keys(config.setTextCommands).find((x) =>
       message.startsWith(x)
     )
