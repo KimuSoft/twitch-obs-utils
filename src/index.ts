@@ -63,30 +63,23 @@ twitch.on(
   ) => {
     if (self) return
     if (!userstate.mod && !userstate.badges?.broadcaster) return
-    const k = Object.keys(config.setTextCommands).find((x) =>
+    let k = Object.keys(config.setTextCommands).find((x) =>
       message.startsWith(x)
     )
     if (!k) {
       const args = message.slice(1).split(" ")
       const command = args.shift()
       if (!command) return
-      if (command === "시간추가") {
-        const name = args.join(" ")
-        const item = data.pointTimers.find(
-          (x) => config.pointTimers[x.id].title === name
-        )
-        if (!item) return
-        item.time += 1000 * 60
-        await twitch.say(channel, `${name} +1분`)
-      } else if (command === "시간제거") {
-        const name = args.join(" ")
-        const item = data.pointTimers.find(
-          (x) => config.pointTimers[x.id].title === name
-        )
-        if (!item) return
-        item.time -= 1000 * 60
-        await twitch.say(channel, `${name} +1분`)
-      }
+      k = Object.keys(config.timeCommands).find((x) => message.startsWith(x))
+      if (!k) return
+      const time = config.timeCommands[k]
+      const name = args.join(" ")
+      const item = data.pointTimers.find(
+        (x) => config.pointTimers[x.id].title === name
+      )
+      if (!item) return
+      item.time += time * 60
+      await twitch.say(channel, `${name} +1분`)
       return
     }
     const source = config.setTextCommands[k] as string
