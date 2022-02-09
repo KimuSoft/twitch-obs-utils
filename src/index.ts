@@ -74,7 +74,7 @@ twitch.on(
       )
       if (!item) return
       item.time += time * 60 * 1000
-      await twitch.say(channel, `${name} ${time > 0 ? "+" : "-"}${time}분`)
+      await twitch.say(channel, `${name} ${time > 0 ? "+" : ""}${time}분`)
       return
     }
     const source = config.setTextCommands[k] as string
