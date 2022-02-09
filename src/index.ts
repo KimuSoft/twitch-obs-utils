@@ -73,7 +73,7 @@ twitch.on(
         (x) => config.pointTimers[x.id].title === name
       )
       if (!item) return
-      item.time += time * 60
+      item.time += time * 60 * 1000
       await twitch.say(channel, `${name} ${time > 0 ? "+" : "-"}${time}분`)
       return
     }
