@@ -74,6 +74,7 @@ twitch.on(
       )
       if (!item) return
       item.time += time * 60
+      await fs.promises.writeFile(dataFile, JSON.stringify(data))
       await twitch.say(channel, `${name} ${time > 0 ? "+" : ""}${time}분`)
       return
     }
