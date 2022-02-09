@@ -74,7 +74,7 @@ twitch.on(
       )
       if (!item) return
       item.time += time * 60
-      await twitch.say(channel, `${name} ${time > 0 ? "+" : "-"}${time}분`)
+      await twitch.say(channel, `${name} ${time > 0 ? "+" : ""}${time}분`)
       return
     }
     const source = config.setTextCommands[k] as string
@@ -146,7 +146,7 @@ const run = async () => {
           .map((x) => {
             const timer = config.pointTimers[x.id]
             const duration = formatDuration((x.time - Date.now()) / 1000)
-            return `${timer.title} ${duration}`
+            return config.timerTextFormat.split('<title>').join(`${timer.title}`).split('<time>').join(`${duration}`)
           })
           .join("\n"),
       },
