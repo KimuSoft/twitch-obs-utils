@@ -73,7 +73,8 @@ twitch.on(
         (x) => config.pointTimers[x.id].title === name
       )
       if (!item) return
-      item.time += time * 60 * 1000
+      item.time += time * 60
+      await fs.promises.writeFile(dataFile, JSON.stringify(data))
       await twitch.say(channel, `${name} ${time > 0 ? "+" : ""}${time}분`)
       return
     }
@@ -146,7 +147,7 @@ const run = async () => {
           .map((x) => {
             const timer = config.pointTimers[x.id]
             const duration = formatDuration((x.time - Date.now()) / 1000)
-            return `${timer.title} ${duration}`
+            return config.timerTextFormat.split('<title>').join(`${timer.title}`).split('<time>').join(`${duration}`)
           })
           .join("\n"),
       },

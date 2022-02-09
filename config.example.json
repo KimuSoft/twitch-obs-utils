@@ -20,5 +20,7 @@
   "timeCommands": {
     "!시간추가 ": 1,
     "!시간제거": -1
-  }
+  },
+  "pointTimerText": "",
+  "timerTextFormat": "<title> <time>"
 }
